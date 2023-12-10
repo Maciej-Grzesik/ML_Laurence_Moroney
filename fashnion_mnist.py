@@ -6,7 +6,7 @@ class myCallback(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
         if logs is None:
             logs = {}
-        if logs.get('accuracy') > 0.95:
+        if logs.get('accuracy') > 0.99:
             self.model.stop_training = True
 
 
