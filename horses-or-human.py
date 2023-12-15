@@ -6,11 +6,20 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from keras.optimizers import RMSprop
 
-training_dir = r'horse-or-human-dataset\training_set'
-validation_dir = r'horse-or-human-dataset\validation_set'
+training_dir = r'horse-or-human-dataset/training_set'
+validation_dir = r'horse-or-human-dataset/validation_set'
 
 # Scaling of images to value 1/255
-train_datagen = ImageDataGenerator(rescale=1 / 255)
+train_datagen = ImageDataGenerator(
+    rescale=1 / 255,
+    rotation_range=40,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True,
+    fill_mode='nearest'
+)
 validation_datagen = ImageDataGenerator(rescale=1 / 255)
 
 validation_generator = validation_datagen.flow_from_directory(
