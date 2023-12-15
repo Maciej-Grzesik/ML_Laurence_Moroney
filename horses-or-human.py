@@ -65,8 +65,8 @@ history = model.fit_generator(
 
 # Testing trained model
 def test_model(file_path):
-    for fn in os.listdir(file_path):
-        img = image.load_img(file_path + fn, target_size=(300, 300))
+    for file_name in os.listdir(file_path):
+        img = image.load_img(file_path + file_name, target_size=(300, 300))
 
         x = image.img_to_array(img)
         x = np.expand_dims(x, axis=0)
@@ -76,9 +76,9 @@ def test_model(file_path):
         print(classes)
         print(classes[0])
         if classes[0] > 0.5:
-            print(fn + "shows a human")
+            print(file_name + " shows a human")
         else:
-            print(fn + "shows a horse")
+            print(file_name + " shows a horse")
 
 
 directory = r'horse-or-human-dataset/test_images/'
